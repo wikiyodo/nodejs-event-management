@@ -7,6 +7,7 @@ const helpers = require("./helpers/index");
 const Booter = require("./bootstrap/index");
 let bodyParser = require('body-parser');
 let cors = require("cors");
+const path = require('path');
 
 
 // init booter
@@ -20,6 +21,8 @@ const serverStart= async () => {
     console.warn("waiting for booters...");
 	app.use(cors());
     app.use(bodyParser.json());
+    app.use(express.static(path.join(__dirname, 'public')));
+
     await sleep(300);
 
     const PostBooter = require("./bootstrap/post-index");
