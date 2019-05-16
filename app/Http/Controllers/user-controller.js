@@ -92,7 +92,7 @@ UserController.login = (req, res, next) => {
 
             // get the account associated with 
             UserModel.findUser({email}, async (err, user)=>{
-                if(user == '' || user.password !== helpers.hash(password)){
+                if(user == null || user.password !== helpers.hash(password)){
                     Controller.error(res,null, "Invalid username/password");
                     return;
                 }
